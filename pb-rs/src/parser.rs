@@ -484,7 +484,7 @@ mod test {
         optional ContainerForNested.NestedEnum e = 2;
     }
     "#;
-        let desc = file_descriptor(msg.as_bytes()).to_full_result().unwrap();
+        let desc = file_descriptor(msg.as_bytes()).unwrap().1;
         assert_eq!(
             vec![Path::new("test_import_nested_imported_pb.proto")],
             desc.import_paths
@@ -501,7 +501,7 @@ mod test {
         optional ContainerForNested.NestedEnum e = 2;
     }
     "#;
-        let desc = file_descriptor(msg.as_bytes()).to_full_result().unwrap();
+        let desc = file_descriptor(msg.as_bytes()).unwrap().1;
         assert_eq!("foo.bar".to_string(), desc.package);
     }
 

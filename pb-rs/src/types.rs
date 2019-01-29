@@ -1426,7 +1426,9 @@ impl FileDescriptor {
             let mut reader = BufReader::new(f);
             reader.read_to_end(&mut buf)?;
         }
-        let mut desc = file_descriptor(&buf).to_result().map_err(Error::Nom)?;
+        let mut desc = file_descriptor(&buf).map_err(|e| {
+            Error::Nom(format!("{}", e.to_string()))
+        }).unwrap().1;
         for mut m in &mut desc.messages {
             if m.path.as_os_str().is_empty() {
                 m.path = in_file.clone().to_path_buf();

@@ -9,8 +9,8 @@ pub enum Error {
     #[fail(display = "{}", _0)]
     Io(#[cause] io::Error),
     /// Nom Error
-    #[fail(display = "Nom error")]
-    Nom(#[cause] ::nom::ErrorKind),
+    #[fail(display = "Nom error '{}'", _0)]
+    Nom(String),
 
     // No .proto file provided
     #[fail(display = "No .proto file provided")]
