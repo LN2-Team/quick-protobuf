@@ -9,8 +9,8 @@ pub enum Error {
     #[fail(display = "{}", _0)]
     Io(#[cause] io::Error),
     /// Nom Error
-    #[fail(display = "{}", _0)]
-    Nom(#[cause] ::nom::simple_errors::Err),
+    #[fail(display = "Nom error '{}'", _0)]
+    Nom(#[cause] ::nom::Err),
 
     // No .proto file provided
     #[fail(display = "No .proto file provided")]
